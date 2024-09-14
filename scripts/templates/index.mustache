@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{site.title}}</title>
+    <style>
+      {{{criticalCSS}}}
+    </style>
+    <link rel="preload" href="/assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/assets/css/styles.css"></noscript>
+    <link rel="alternate" type="application/rss+xml" title="{{site.title}} RSS Feed" href="/rss.xml">
+    {{{openGraphMetadata}}}
+</head>
+<body>
+    <header>
+        <h1>{{site.title}}</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/gallery.html">Gallery</a></li>
+                <li><a href="/collections.html">Collections</a></li>
+                <li><a href="/categories.html">Categories</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="recent-posts">
+            <h2>Recent Posts</h2>
+            <div class="post-grid">
+                {{#recentPosts}}
+                <article class="post-card">
+                    <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" data-src="{{images.0.url}}" data-srcset="{{images.0.srcset}}" alt="{{content}}">
+                    <h3>{{content}}</h3>
+                    <p>By {{author}} on {{createdTime}}</p>
+                    <p>Category: <a href="/categories/{{category}}.html">{{category}}</a></p>
+                    <p>Tags: 
+                        {{#tags}}
+                        <a href="/tags/{{.}}.html">{{.}}</a>
+                        {{/tags}}
+                    </p>
+                    <a href="/posts/{{id}}.html">View Details</a>
+                </article>
+                {{/recentPosts}}
+            </div>
+        </section>
+
+        <section id="featured-collections">
+            <h2>Featured Collections</h2>
+            <div class="collection-grid">
+                {{#featuredCollections}}
+                <article class="collection-card">
+                    <h3>{{name}}</h3>
+                    <p>{{description}}</p>
+                    <a href="/collections/{{id}}.html">View Collection</a>
+                </article>
+                {{/featuredCollections}}
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 {{site.title}}. All rights reserved.</p>
+        <p><a href="/rss.xml">RSS Feed</a></p>
+    </footer>
+
+    {{{lazyLoadingScript}}}
+    <script src="/assets/js/chunk-0.js" defer></script>
+    <script src="/assets/js/chunk-1.js" defer></script>
+    <script src="/assets/js/chunk-2.js" defer></script>
+</body>
+</html>
